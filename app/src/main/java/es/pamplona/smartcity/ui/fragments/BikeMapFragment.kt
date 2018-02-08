@@ -11,6 +11,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
+import es.pamplona.smartcity.domain.commands.RequestBikeStationsCommand
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * Created by Asier.Guillo on 31/01/2018.
@@ -30,55 +33,27 @@ class BikeMapFragment : SupportMapFragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: GoogleMap) {
-        val plazaToros = LatLng(42.813628,-1.6363871)
-        val pioXII = LatLng(42.814407, -1.652563)
-        val rochapea = LatLng(42.825818, -1.649966)
-        val UPNA = LatLng(42.800601, -1.638551)
-        val UNAV = LatLng(42.804397, -1.663674)
-
-        map.addMarker(MarkerOptions()
-                .position(plazaToros)
-                .title("Plaza de Toros"))
-        map.addMarker(MarkerOptions()
-                .position(pioXII)
-                .title("Pio XII"))
-        map.addMarker(MarkerOptions()
-                .position(rochapea)
-                .title("Rochapea"))
-        map.addMarker(MarkerOptions()
-                .position(UPNA)
-                .title("Universidad Pública de Navarra"))
-        map.addMarker(MarkerOptions()
-                .position(UNAV)
-                .title("Universidad de Navarra"))
-
-        val builder = LatLngBounds.Builder()
-                .include(plazaToros)
-                .include(pioXII)
-                .include(rochapea)
-                .include(UPNA)
-                .include(UNAV)
-        val bounds = builder.build()
-        val width = resources.displayMetrics.widthPixels
-        val height = resources.displayMetrics.heightPixels
-        val padding = (width * 0.20).toInt()
-        val cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)
-        map.moveCamera(cu)
+        loadBikeStations(map)
     }
 
-    /*
-    private fun getBitmapDescriptor(id: Int): BitmapDescriptor {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val vectorDrawable = getDrawable(activity, id) as VectorDrawable
-            vectorDrawable.setBounds(0, 0, vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight)
-            val bm = Bitmap.createBitmap(vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bm)
-            vectorDrawable.draw(canvas)
-            return BitmapDescriptorFactory.fromBitmap(bm)
-        } else {
-            return BitmapDescriptorFactory.fromResource(id)
+    private fun loadBikeStations(map: GoogleMap) = doAsync {
+        val result = RequestBikeStationsCommand().execute()
+        uiThread {
+            val builder = LatLngBounds.Builder()
+            result.bikeStationList.forEach {
+                val position = LatLng(it.lat, it.lon)
+                map.addMarker(MarkerOptions()
+                        .position(position)
+                        .title(it.address))
+                builder.include(position)
+            }
+            val bounds = builder.build()
+            val width = resources.displayMetrics.widthPixels
+            val height = resources.displayMetrics.heightPixels
+            val padding = (width * 0.20).toInt()
+            val cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding)
+            map.moveCamera(cu)
         }
     }
-    */
 
 }

@@ -4,9 +4,18 @@ package es.pamplona.smartcity.domain.model
  * Created by Asier.Guillo on 01/02/2018.
  */
 
-data class BikeStationList(val bikeStationList: List<BikeStation>) {
+data class BikeStationList(var bikeStationList: List<BikeStation>) {
     val size: Int get() = bikeStationList.size
     operator fun get(position: Int) = bikeStationList[position]
 }
 
-data class BikeStation(val id: Long, val place: String, val available: Int, val free: Int, val distance: Double)
+data class ChargerList(var chargerList: List<Charger>) {
+    val size: Int get() = chargerList.size
+    operator fun get(position: Int) = chargerList[position]
+}
+
+data class BikeStation(val id: Long, val address: String, val lat: Double, val lon: Double,
+                       var fav: Boolean, val status: List<Boolean>?, val distance: Double?)
+
+data class Charger(val id: Long, val address: String, val lat: Double, val lon: Double,
+                   var fav: Boolean, val status: Boolean?, val distance: Double?)

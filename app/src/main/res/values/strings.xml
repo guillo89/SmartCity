@@ -7,5 +7,21 @@
 
     <string name="toolbar_home_title">SmartCity</string>
     <string name="toolbar_bike_title">Alquiler de bicicletas</string>
+    <string name="toolbar_charger_title">Estaciones de recarga</string>
     <string name="toolbar_settings">Ajustes</string>
+
+    <string name="card_bike_title">Alquiler de bicicletas</string>
+    <plurals name="item_bike_available">
+        <item quantity="one">%d disponible</item>
+        <item quantity="other">%d disponibles</item>
+    </plurals>
+    <plurals name="item_bike_free">
+        <item quantity="one">%d sitio libre</item>
+        <item quantity="other">%d sitios libres</item>
+    </plurals>
+    <string name="item_charger_free">Disponible</string>
+    <string name="item_charger_occupied">Ocupado</string>
+    <string name="card_charger_title">Puntos de recarga</string>
+    <string name="card_direction_title">Cómo llegar</string>
+
 </resources>

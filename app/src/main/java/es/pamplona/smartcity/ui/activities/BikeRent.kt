@@ -27,12 +27,12 @@ class BikeRent : AppCompatActivity(), ToolbarManager {
         val navigation = find<BottomNavigationView>(R.id.bike_navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val fragment = BikeMapFragment.Companion.newInstance()
+        val fragment = BikeListFragment.Companion.newInstance()
         changeFragment(fragment)
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
+        when(item.itemId) {
             R.id.bike_navigation_map -> {
                 val fragment = BikeMapFragment.Companion.newInstance()
                 changeFragment(fragment)

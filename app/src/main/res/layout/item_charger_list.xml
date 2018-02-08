@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/activity_margin">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_charger_green"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/place_charger_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Plaza de Toros"/>
+
+        <LinearLayout
+            android:id="@+id/status_charger_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/status_image_charger_list"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                tools:src="@drawable/ic_circle_green"/>
+
+            <TextView
+                android:id="@+id/status_text_charger_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="4dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                tools:text="Disponible"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/distance_charger_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:visibility="gone"
+            tools:text="a 0,4 km"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fav_charger_list"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:tint="@color/colorPrimary"
+        tools:src="@drawable/ic_favorite_black_24dp"/>
+
+</LinearLayout>

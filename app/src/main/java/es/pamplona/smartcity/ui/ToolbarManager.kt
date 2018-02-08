@@ -42,6 +42,17 @@ interface ToolbarManager {
         }
     }
 
+    fun initChargerToolbar() {
+        toolbar.inflateMenu(R.menu.menu_home_toolbar)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+            //R.id.toolbar_settings -> App.instance.toast("Ajustes")
+            //else -> App.instance.toast("Opcion desconocida")
+            }
+            true
+        }
+    }
+
     fun enableHomeAsUp(up: () -> Unit) {
         toolbar.navigationIcon = DrawerArrowDrawable(toolbar.ctx).apply { progress = 1f }
         toolbar.setNavigationOnClickListener { up() }

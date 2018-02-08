@@ -20,8 +20,16 @@ class Home : AppCompatActivity(), ToolbarManager {
         initHomeToolbar()
         toolbarTitle = getString(R.string.toolbar_home_title)
 
-        button.setOnClickListener {
+        button_bike.setOnClickListener {
             startActivity<BikeRent>()
+        }
+
+        button_charger.setOnClickListener {
+            startActivity<ElectricCharge>()
+        }
+
+        button_direction.setOnClickListener {
+            startActivity<Direction>()
         }
     }
 }
